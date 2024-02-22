@@ -1,0 +1,6 @@
+name: ml-project
+python_env: config/python_env.yaml
+
+entry_points:
+  main:
+    command: "python train.py"
