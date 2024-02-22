@@ -9,6 +9,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, a
 from sklearn.model_selection import train_test_split
 from sklearn.base import ClassifierMixin
 import mlflow
+import mlflow.data
 from mlflow.models.signature import infer_signature
 
 def load_yaml(file_path):
