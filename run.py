@@ -1,4 +1,5 @@
 import mlflow
+from mlflow import MlflowClient
 import yaml
 
 with open("./parameters.yml") as f:
@@ -17,9 +18,8 @@ if experiment is None:  # 当該Experiment存在しないとき、新たに作�
 else: # 当該Experiment存在するとき、IDを取得
     experiment_id = experiment.experiment_id
 
+client = MlflowClient()
+
+
 # mlflow.run(project_uri, env_manager="local", experiment_id=experiment_id)
-run = mlflow.projects.run(
-    uri=PROJECT_URI, 
-    env_manager="local",
-    experiment_id=experiment_id
-)
+run = mlflow.projects.run(uri=PROJECT_URI, env_manager="local", experiment_id=experiment_id)

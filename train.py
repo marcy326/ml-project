@@ -115,8 +115,8 @@ if __name__ == "__main__":
     metrics = evaluate_model(y_pred, y_test)
     
     project_url = f"{parameters['mlflow']['PROJECT_URI']}/-/tree/{parameters['mlflow']['VERSION']}"
-    
-    with mlflow.start_run(description=project_url) as run:
+
+    with mlflow.start_run() as run:
         run_id = run.info.run_id
         dataset = mlflow.data.from_pandas(df_prep, targets=parameters["target"])
         mlflow.log_input(dataset, context="training")
@@ -128,4 +128,5 @@ if __name__ == "__main__":
         mlflow.log_metrics(metrics)
         signature = infer_signature(X_test, y_pred)
         mlflow.sklearn.log_model(clf, parameters["model_name"], signature=signature)
-    
+        mlflow.set_tag(key='Source URL', value=project_url)
+        mlflow.set_tag(key='mlflow.note.content', value=project_url)
