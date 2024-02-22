@@ -7,8 +7,8 @@ build_dependencies:
   - wheel==0.37.1
 # Dependencies required to run the project.
 dependencies:
-  - mlflow==2.3
-  - scikit-learn==1.0.2
+  - mlflow==2.10
+  - scikit-learn
   - numpy
   - PyYAML
   - pandas
