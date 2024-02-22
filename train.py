@@ -114,7 +114,9 @@ if __name__ == "__main__":
     y_pred = model_predict(clf, X_test, parameters)
     metrics = evaluate_model(y_pred, y_test)
     
-    with mlflow.start_run() as run:
+    project_url = f"{parameters['mlflow']['PROJECT_URI']}/-/tree/{parameters['mlflow']['VERSION']}"
+    
+    with mlflow.start_run(description=project_url) as run:
         run_id = run.info.run_id
         dataset = mlflow.data.from_pandas(df_prep, targets=parameters["target"])
         mlflow.log_input(dataset, context="training")
