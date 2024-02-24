@@ -1,10 +1,7 @@
-build-job:
-  stage: build
+stages:
+  - train
+
+train:
+  stage: train
   script:
-    - echo "Hello, $GITLAB_USER_LOGIN!"
-    - echo "Building Now!"
-   
-test-job:
-  stage: test
-  script:
-    - echo "This job tests something"
+    - python run.py
