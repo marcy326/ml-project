@@ -6,6 +6,6 @@ train:
   image: python:3.10-slim-bullseye
   script:
     - apt update
-    - apt install git
+    - apt install git -y
     - pip install mlflow
     - mlflow run $CI_PROJECT_URL
