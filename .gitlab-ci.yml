@@ -5,8 +5,7 @@ train:
   stage: train
   image: python:3.10-slim-bullseye
   script:
-    - echo "CI_PROJECT_URL $CI_PROJECT_URL"
-    - export GIT_PYTHON_REFRESH=quiet
+    - sudo apt-get upgrade
+    - sudo apt-get install git
     - pip install mlflow
-    - git init
     - mlflow run $CI_PROJECT_URL
