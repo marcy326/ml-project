@@ -6,7 +6,6 @@ train:
   image: python:3.10-slim-bullseye
   script:
     - echo "CI_PROJECT_URL $CI_PROJECT_URL"
-    - echo "CI_PROJECT_PATH $CI_PROJECT_PATH"
-    - echo "CI_COMMIT_BRANCH $CI_COMMIT_BRANCH"
-    - echo "CI_COMMIT_SHA $CI_COMMIT_SHA"
-    - echo "CI_API_V4_URL $CI_API_V4_URL"
+    - export GIT_PYTHON_REFRESH=quiet
+    - pip install mlflow
+    - mlflow run $CI_PROJECT_URL
