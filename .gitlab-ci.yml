@@ -7,4 +7,5 @@ train:
   script:
     - export GIT_PYTHON_REFRESH=quiet
     - python3 -m pip install mlflow
-    - python3 run.py
+    - pwd
+    - ls
