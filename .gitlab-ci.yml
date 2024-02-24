@@ -8,4 +8,4 @@ train:
     - apt update
     - apt install git -y
     - pip install mlflow
-    - mlflow run $CI_PROJECT_URL
+    - python run.py
