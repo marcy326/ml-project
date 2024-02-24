@@ -8,4 +8,5 @@ train:
     - echo "CI_PROJECT_URL $CI_PROJECT_URL"
     - export GIT_PYTHON_REFRESH=quiet
     - pip install mlflow
+    - git init
     - mlflow run $CI_PROJECT_URL
