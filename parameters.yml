@@ -2,7 +2,7 @@ mlflow:
   TRACKING_URI: http://192.168.1.3:5000
   EXPERIMENT_NAME: kaggle_titanic
   PROJECT_URI: http://192.168.1.3:1080/mlteam/ml-project
-  VERSION: 92f2c5575e1866455ba8fc1a96868933fbd1e2b0
+  VERSION: null
 test_size: 0.2
 random_state: 42
 model_name: xgb
