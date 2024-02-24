@@ -5,5 +5,5 @@ train:
   stage: train
   image: python:3.10-slim-bullseye
   script:
-    - pip install mlflow
+    - pip3 install mlflow
     - python run.py
