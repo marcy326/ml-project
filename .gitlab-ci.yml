@@ -7,5 +7,7 @@ train:
   script:
     - apt update
     - apt install git -y
+    - git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    - ~/.pyenv/plugins/python-build/install.sh
     - pip install mlflow
     - python run.py
