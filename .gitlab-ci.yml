@@ -5,7 +5,9 @@ train:
   stage: train
   image: python:3.10-slim-bullseye
   script:
-    - export GIT_PYTHON_REFRESH=quiet
-    - python3 -m pip install mlflow
-    - pwd
-    - ls
+    - apt update
+    - apt install git -y
+    - git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    - ~/.pyenv/plugins/python-build/install.sh
+    - pip install mlflow
+    - python run.py
