@@ -7,7 +7,11 @@ train:
   script:
     - apt update
     - apt install git -y
-    - git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    - ~/.pyenv/plugins/python-build/install.sh
+    - curl https://pyenv.run | bash
+    - echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+    - echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+    - echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+    - source ~/.bashrc
+    - pyenv -v
     - pip install mlflow
     - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_BRANCH
