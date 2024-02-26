@@ -6,7 +6,7 @@ train:
   image: python:3.10-slim-bullseye
   script:
     - apt update
-    - apt install git -y
+    - apt install -y git curl
     - curl https://pyenv.run | bash
     - echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
     - echo 'eval "$(pyenv init -)"' >> ~/.bashrc
