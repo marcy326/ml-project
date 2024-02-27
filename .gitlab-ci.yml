@@ -18,4 +18,4 @@ xz-utils tk-dev libffi-dev liblzma-dev python3-openssl
     - pyenv versions
     - pyenv install --skip-existing 3.10.12
     - pip install mlflow
-    - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_BRANCH
+    - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_BRANCH --env_manager local
