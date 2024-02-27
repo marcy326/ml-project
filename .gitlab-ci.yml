@@ -6,19 +6,6 @@ train:
   image: python:3.10-slim-bullseye
   script:
     - apt update
-    - apt install -y git curl make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python3-openssl
-    - curl https://pyenv.run | bash
-    - echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
-    - echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-    - echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-    - source ~/.bashrc
-    - pyenv -v
-    - pyenv versions
-    - pyenv install --skip-existing 3.10.12
-<<<<<<< HEAD
+    - apt install -y git
     - pip install mlflow
-    - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_BRANCH --env_manager local
-=======
-    - pip install mlflow virtualenv
-    - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri ${CI_PROJECT_URL}.git --version $CI_COMMIT_SHA
->>>>>>> 50b1cf7be1aded73f1ed78a8a98dc3e05a7b9500
+    - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri ${CI_PROJECT_URL}.git --version $CI_COMMIT_SHA --env_manager local
