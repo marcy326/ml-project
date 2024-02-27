@@ -6,6 +6,6 @@ train:
   image: python:3.10-slim-bullseye
   script:
     - apt update
-    - apt install -y git
+    - apt install -y git libgomp1
     - pip install -r requirements.txt
     - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri ${CI_PROJECT_URL}.git --version $CI_COMMIT_SHA --env_manager local
