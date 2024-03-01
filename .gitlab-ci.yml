@@ -9,12 +9,13 @@ train:
       - .cache/
       - .cache/pip
       - .cache/docker
-  script:
+  before_script:
     - echo $CI_REGISTRY_IMAGE
-    - apt update
-    - apt install -y git curl
+    - apt-get update
+    - apt-get install -y git curl
     - curl -fsSL https://get.docker.com -o get-docker.sh
     - sh get-docker.sh
     - docker compose build
     - pip install mlflow
+  script:
     - python run.py --tracking_uri http://mlflow.home --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_SHA
