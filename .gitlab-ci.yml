@@ -6,7 +6,7 @@ train:
   image: python:3.10-slim-bullseye
   cache:
     paths:
-      - .cache/
+      - .cache/pip
   script:
     - apt update
     - apt install -y git curl
