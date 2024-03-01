@@ -11,4 +11,4 @@ train:
     - sh get-docker.sh
     - docker compose build
     - pip install mlflow
-    - python run.py --tracking_uri http://192.168.1.3:5000 --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_SHA
+    - python run.py --tracking_uri http://mlflow.home --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_SHA

@@ -1,5 +1,5 @@
 mlflow:
-  TRACKING_URI: http://ubuntu2204:5000
+  TRACKING_URI: http://mlflow.home
   EXPERIMENT_NAME: kaggle_titanic
   PROJECT_URI: http://gitlab.home/mlteam/ml-project.git
   VERSION: null
