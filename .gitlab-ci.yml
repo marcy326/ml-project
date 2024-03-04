@@ -1,5 +1,21 @@
 stages:
+  - build
   - train
+
+build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.14.0-debug
+    entrypoint: [""]
+  cache:
+    paths:
+      - .cache/
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
 
 train:
   stage: train
@@ -10,12 +26,12 @@ train:
       - .cache/pip
       - .cache/docker
   before_script:
-    - echo $CI_REGISTRY_IMAGE
     - apt-get update
     - apt-get install -y git curl
     - curl -fsSL https://get.docker.com -o get-docker.sh
     - sh get-docker.sh
-    - docker compose build
+    - docker login register.gitlab.home --user $CI_REGISTRY_USER --password $CI_REGISTRY_PASSWORD
+    - docker pull ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}
     - pip install mlflow
   script:
     - python run.py --tracking_uri http://mlflow.home --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_SHA
