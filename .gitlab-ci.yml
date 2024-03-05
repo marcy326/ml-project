@@ -19,6 +19,7 @@ build:
       --skip-tls-verify
       --snapshotMode redo
       --use-new-run
+      --compressed-caching false
 
 train:
   stage: train
