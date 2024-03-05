@@ -30,6 +30,7 @@ train:
     - apt-get install -y git curl
     - curl -fsSL https://get.docker.com -o get-docker.sh
     - sh get-docker.sh
+    - docker images
     # - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.home --username "$CI_REGISTRY_USER" --password-stdin
     # - echo "CI_REGISTRY_IMAGE:${CI_REGISTRY_IMAGE}"
     # - echo "CI_COMMIT_TAG:${CI_COMMIT_TAG}"
