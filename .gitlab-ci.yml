@@ -1,44 +1,39 @@
 stages:
-  - build
+  # - build
   - train
 
-build:
-  stage: build
-  image:
-    name: gcr.io/kaniko-project/executor:v1.14.0-debug
-    entrypoint: [""]
-  cache:
-    paths:
-      - .cache/
-  script:
-    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor
-      --cache=true
-      --context "${CI_PROJECT_DIR}"
-      --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
-      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
-      --skip-tls-verify
-      --snapshotMode=redo
-      --use-new-run
-      --compressed-caching=false
+# build:
+#   stage: build
+#   image:
+#     name: gcr.io/kaniko-project/executor:v1.14.0-debug
+#     entrypoint: [""]
+#   cache:
+#     paths:
+#       - .cache/
+#   script:
+#     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+#     - /kaniko/executor
+#       --cache=true
+#       --context "${CI_PROJECT_DIR}"
+#       --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+#       --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
+#       --skip-tls-verify
+#       --snapshotMode=redo
+#       --use-new-run
+#       --compressed-caching=false
 
 train:
   stage: train
   image: python:3.10-slim-bullseye
-  cache:
-    paths:
-      - .cache/
-      - .cache/pip
-      - .cache/docker
   before_script:
     - apt-get update
     - apt-get install -y git curl
     - curl -fsSL https://get.docker.com -o get-docker.sh
     - sh get-docker.sh
-    - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.home --username "$CI_REGISTRY_USER" --password-stdin
-    - echo "CI_REGISTRY_IMAGE:${CI_REGISTRY_IMAGE}"
-    - echo "CI_COMMIT_TAG:${CI_COMMIT_TAG}"
-    - docker pull ${CI_REGISTRY_IMAGE}:latest
+    # - echo "$CI_REGISTRY_PASSWORD" | docker login registry.gitlab.home --username "$CI_REGISTRY_USER" --password-stdin
+    # - echo "CI_REGISTRY_IMAGE:${CI_REGISTRY_IMAGE}"
+    # - echo "CI_COMMIT_TAG:${CI_COMMIT_TAG}"
+    # - docker pull ${CI_REGISTRY_IMAGE}:latest
     - pip install mlflow
   script:
     - python run.py --tracking_uri http://mlflow.home --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_SHA
