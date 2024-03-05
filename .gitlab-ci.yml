@@ -38,5 +38,5 @@ train:
     - pip install mlflow
   script:
     - export MLFLOW_TRACKING_URI=http://mlflow.home
-    - mlflow run $CI_PROJECT_URL --version $CI_COMMIT_SHA --experiment_name kaggle_titanic --env-manager local --build-image
+    - mlflow run $CI_PROJECT_URL --version $CI_COMMIT_SHA --experiment-name kaggle_titanic --env-manager local --build-image
     # - python run.py --tracking_uri http://mlflow.home --experiment_name kaggle_titanic --project_uri $CI_PROJECT_URL --version $CI_COMMIT_SHA
