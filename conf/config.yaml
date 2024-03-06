@@ -1,5 +1,3 @@
-# parameters.yml
-
 mlflow:
   tracking_uri: http://mlflow.home
   experiment_name: kaggle_titanic
@@ -21,10 +19,11 @@ test_size: 0.2
 random_state: 42
 
 model:
-  name: random-forest
+  name: xgb
   params:
     n_estimators: 100
     max_depth: 6
+    eta: 0.3
     random_state: 1
 
 param_grid:

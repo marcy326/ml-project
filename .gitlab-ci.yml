@@ -4,8 +4,15 @@ stages:
 train:
   stage: train
   image: python:3.10-slim-bullseye
+  cache:
+    paths:
+      - .cache/
+  before_script:
+    - apt-get update
+    - apt-get install -y git curl
+    - curl -fsSL https://get.docker.com -o get-docker.sh
+    - sh get-docker.sh
+    - pip install mlflow
   script:
-    - export GIT_PYTHON_REFRESH=quiet
-    - python3 -m pip install mlflow
-    - pwd
-    - ls
+    - export MLFLOW_TRACKING_URI=http://mlflow.home
+    - mlflow run $CI_PROJECT_URL --version $CI_COMMIT_SHA --experiment-name kaggle_titanic --env-manager local --build-image

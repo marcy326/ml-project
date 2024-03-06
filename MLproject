@@ -1,5 +1,6 @@
 name: ml-project
-python_env: config/python_env.yaml
+docker_env:
+  image: marcy326/mlflow-projects-runner
 
 entry_points:
   main:
